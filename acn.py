@@ -205,7 +205,9 @@ def calc_loss(x, recon, u_q, s_q, u_p, s_p):
     xent = F.binary_cross_entropy(recon, x, size_average=False)
 
     # coding cost
-    dkl = torch.sum(s_p - s_q - 0.5 + ((2 * s_q).exp() + (u_q - u_p).pow(2)) / (2 * (2 * s_p).exp()))
+    dkl = torch.sum(s_p - s_q - 0.5 +
+                    ((2 * s_q).exp() + (u_q - u_p).pow(2)) /
+                    (2 * (2 * s_p).exp()))
 
     return xent + dkl
 
